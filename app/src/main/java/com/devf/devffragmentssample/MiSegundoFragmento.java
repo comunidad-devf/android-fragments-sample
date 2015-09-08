@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 /**
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -29,37 +30,23 @@ import android.widget.RelativeLayout;
  */
 public class MiSegundoFragmento extends Fragment {
 
-    LinearLayout contenedor;
+    TextView nombre, ataque, defensa;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View vistaFragmento = inflater.inflate(R.layout.fragment_segundo, container, false);
 
-        Context actividad = getActivity();
-
-        //Creando un botón
-        Button botonFragmento = new Button(actividad);
-
-        LinearLayout.LayoutParams parametros = new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT);
-
-
-        //Configurar el botón
-        botonFragmento.setText("Botón");
-        botonFragmento.setLayoutParams(parametros);
-
-        //Recuperando el contenedor
-        contenedor = (LinearLayout) vistaFragmento.findViewById(R.id.contenedor_segundo_fragmento);
-
-        //Añadir botón
-        contenedor.addView(botonFragmento);
+        nombre = (TextView) vistaFragmento.findViewById(R.id.text_nombre);
+        ataque = (TextView) vistaFragmento.findViewById(R.id.text_ataque);
+        defensa = (TextView) vistaFragmento.findViewById(R.id.text_defensa);
 
         return vistaFragmento;
     }
 
-    public void setColor(int color){
-        contenedor.setBackgroundColor(color);
+    public void setPokemon(Pokemon pokemon){
+        nombre.setText(pokemon.getNombre());
+        ataque.setText(pokemon.getAtaque() + "");
+        defensa.setText(pokemon.getDefensa() + "");
     }
 }

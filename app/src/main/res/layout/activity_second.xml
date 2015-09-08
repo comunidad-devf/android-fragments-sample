@@ -7,7 +7,7 @@
     tools:context="com.devf.devffragmentssample.SecondActivity">
 
     <fragment
-        android:id="@+id/second_fragment"
+        android:id="@+id/fragment_segundo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:name="com.devf.devffragmentssample.MiSegundoFragmento"

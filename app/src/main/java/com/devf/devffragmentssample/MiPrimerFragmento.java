@@ -29,7 +29,10 @@ import android.widget.LinearLayout;
 
 public class MiPrimerFragmento extends Fragment{
 
-    Button boton;
+    Button botonPikachu, botonSquirtle, botonCharizard;
+    PokemonClickeado escuchadorDeClicksEnPokemon;
+
+    Pokemon[] pokemones;
 
 
     @Nullable
@@ -37,12 +40,44 @@ public class MiPrimerFragmento extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_primer, container, false);
 
-        boton = (Button) view.findViewById(R.id.boton);
+        botonPikachu = (Button) view.findViewById(R.id.boton_pikachu);
+        botonSquirtle = (Button) view.findViewById(R.id.boton_squirtle);
+        botonCharizard = (Button) view.findViewById(R.id.boton_charizard);
 
-        boton.setOnClickListener((MainActivity)getActivity());
+        escuchadorDeClicksEnPokemon = (MainActivity)getActivity();
+        pokemones = crearPokemones();
+
+        botonPikachu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                escuchadorDeClicksEnPokemon.onClick(pokemones[0]);
+            }
+        });
+
+        botonSquirtle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                escuchadorDeClicksEnPokemon.onClick(pokemones[1]);
+            }
+        });
+
+        botonCharizard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                escuchadorDeClicksEnPokemon.onClick(pokemones[2]);
+            }
+        });
 
 
         return view;
+    }
+
+    public Pokemon[] crearPokemones(){
+        Pokemon pikachu = new Pokemon("Pikachu", 70, 60);
+        Pokemon squirtle = new Pokemon("Squirtle", 90, 110);
+        Pokemon charizard = new Pokemon("Charizard", 200, 150);
+
+        return new Pokemon[] {pikachu, squirtle, charizard};
     }
 
 }

@@ -8,9 +8,21 @@
     android:background="@android:color/holo_blue_bright">
 
     <Button
-        android:id="@+id/boton"
+        android:id="@+id/boton_pikachu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Botón"/>
+        android:text="Pikachu" />
+
+    <Button
+        android:id="@+id/boton_squirtle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Squirtle" />
+
+    <Button
+        android:id="@+id/boton_charizard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Charizard" />
 
 </LinearLayout>

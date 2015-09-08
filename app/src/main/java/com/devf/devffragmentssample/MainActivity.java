@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements PokemonClickeado{
 
     public static final String LOG_TAG = MainActivity.class.getSimpleName();
 
@@ -21,30 +21,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    @Override
-    public void onClick(View view) {
-        Log.d(LOG_TAG, "El botón del fragmento fué clickeado");
-
-        if (estaElSegundoFragmentoVisible()){
-            cambiaDeColor();
-        }
-
-        else{
-            Intent intent = new Intent(this, SecondActivity.class);
-            startActivity(intent);
-        }
-
-
-    }
-
-    private void cambiaDeColor() {
-        MiSegundoFragmento segundoFragmento = (MiSegundoFragmento) getSupportFragmentManager()
-                .findFragmentById(R.id.fragment_segundo);
-
-        segundoFragmento.setColor(Color.WHITE);
-    }
 
     private boolean estaElSegundoFragmentoVisible() {
        return getSupportFragmentManager().findFragmentById(R.id.fragment_segundo) != null;
+    }
+
+    @Override
+    public void onClick(Pokemon pokemon) {
+
+        if (estaElSegundoFragmentoVisible()) {
+            MiSegundoFragmento segundoFragmento = (MiSegundoFragmento) getSupportFragmentManager()
+                    .findFragmentById(R.id.fragment_segundo);
+
+            segundoFragmento.setPokemon(pokemon);
+        }
+
+        else {
+            Intent segundaActividad = new Intent(this, SecondActivity.class);
+            segundaActividad.putExtra("nombre", pokemon.getNombre());
+            segundaActividad.putExtra("ataque", pokemon.getAtaque());
+            segundaActividad.putExtra("defensa", pokemon.getDefensa());
+
+            startActivity(segundaActividad);
+        }
     }
 }
