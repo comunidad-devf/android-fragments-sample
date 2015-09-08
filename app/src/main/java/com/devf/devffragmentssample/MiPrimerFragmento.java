@@ -1,5 +1,6 @@
 package com.devf.devffragmentssample;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -27,7 +28,8 @@ import android.widget.LinearLayout;
  */
 
 public class MiPrimerFragmento extends Fragment{
-    Button veAlSegundoActivity;
+
+    Button boton;
 
 
     @Nullable
@@ -35,21 +37,12 @@ public class MiPrimerFragmento extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_primer, container, false);
 
-        veAlSegundoActivity = new Button(getActivity());
+        boton = (Button) view.findViewById(R.id.boton);
 
-        veAlSegundoActivity.setText("Ve a la segunda actividad!");
+        boton.setOnClickListener((MainActivity)getActivity());
 
-        veAlSegundoActivity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent segundaActividadIntent = new Intent(getActivity(), SecondActivity.class);
-                startActivity(segundaActividadIntent);
-            }
-        });
-
-        ((LinearLayout)view.findViewById(R.id.contedor_primer_fragmento))
-                .addView(veAlSegundoActivity, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
         return view;
     }
+
 }
